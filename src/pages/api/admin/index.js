@@ -1,28 +1,25 @@
 import connectDb from "@/data/dbConn"
-import { getQuizzes, postQuizzes, putQuiz, deleteQuiz } from "@/data/controller"
+import { postClient, getAllClients, deleteClient } from "@/data/controller"
 
 export default async function handler(req, res) {
-    connectDb().catch(() => res.status(405).json({error: "Connection Failed!!"}))
+    connectDb().catch(() => res.status(405).json({ error: "Web Services Connection Failed!!" }))
 
     /** Type of Request */
     const { method } = req
 
     switch (method) {
-        case 'GET':
-            getQuizzes(req, res)
-            break;
         case 'POST':
-            postQuizzes(req, res)
+            postClient(req, res)
             break;
-        case 'PUT':
-            putQuiz(req, res)
+        case 'GET':
+            getAllClients(req, res)
             break;
         case 'DELETE':
-            deleteQuiz(req, res)
+            deleteClient(req, res)
             break;
         default:
-            res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE'])
+            res.setHeader('Allow', ['GET', 'POST', 'DELETE'])
             res.status(405).end(`Method ${method} Not Allowed`)
-            break;    
+            break;
     }
 }

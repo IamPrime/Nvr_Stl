@@ -8,8 +8,8 @@
 /** BASE_URL for working with backend */
 const BASE_URL = 'http://localhost:5000'
 
-/** Get all quizzes from the database */
-export const getAllQuizzes = async () => {
+/** Get All Clients from the database */
+export const getAllClients = async () => {
     const response = await fetch(`${BASE_URL}/api/admin`)
 
     const json = await response.json()
@@ -17,22 +17,22 @@ export const getAllQuizzes = async () => {
     return json
 }
 
-/** Get quiz by Id */
-export const getQuizId = async (quizId) => {
-    const response = await fetch(`${BASE_URL}/api/admin/${quizId}`)
+/** Get Client by Id */
+export const getClientId = async (clientId) => {
+    const response = await fetch(`${BASE_URL}/api/admin/${clientId}`)
 
     const json = await response.json()
 
     return json
 }
 
-/** Post Quiz */
-export async function postQuiz(quizData) {
+/** Post Client */
+export async function postClient(clientData) {
     try {
         const Options = {
             method: 'POST',
             headers: { 'Content-Type': "application/json" },
-            body: JSON.stringify(quizData)
+            body: JSON.stringify(clientData)
         }
 
         const response = await fetch(`${BASE_URL}/api/admin`, Options)
@@ -45,34 +45,15 @@ export async function postQuiz(quizData) {
     }
 }
 
-/** Update Quiz by Id */
-export async function putQuiz(quizId, quizData) {
-    try {
-        const Options = {
-            method: 'PUT',
-            headers: { 'Content-Type': "application/json" },
-            body: JSON.stringify(quizData)
-        }
-
-        const response = await fetch(`${BASE_URL}/api/admin/${quizId}`, Options)
-        const json = await response.json()
-
-        return json
-
-    } catch (error) {
-        return (error.message)
-    }
-}
-
-/** Delete Quiz by Id */
-export async function deleteQuiz(quizId) {
+/** Delete Client by Id */
+export async function deleteClient(clientId) {
     try {
         const Options = {
             method: 'DELETE',
             headers: { 'Content-Type': "application/json" },
         }
 
-        const response = await fetch(`${BASE_URL}/api/admin/${quizId}`, Options)
+        const response = await fetch(`${BASE_URL}/api/admin/${clientId}`, Options)
         const json = await response.json()
 
         return json

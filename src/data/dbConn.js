@@ -7,7 +7,7 @@ const connectDb = async () => {
         const { connection } = await mongoose.connect(MONGODB_URI)
 
         if (connection.readyState == 1) {
-            console.log("BlueBlood Database Connected!!")
+            console.log("Web Services Database Connected!!")
         }
     } catch (errors) {
         return Promise.reject(errors)

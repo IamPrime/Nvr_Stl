@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
-import { SiNextdotjs } from 'react-icons/si'
-import { RxDashboard, RxPerson } from 'react-icons/rx'
-import {MdAdminPanelSettings, MdOutlineSettings} from 'react-icons/md'
+import { FcServices } from 'react-icons/fc'
+import { GiTechnoHeart } from 'react-icons/gi'
+import { MdWorkHistory, MdPeopleAlt, MdContactPage, MdOutlineSettings, MdHistoryEdu } from 'react-icons/md'
+import Image from 'next/image'
 
 
 const Sidebar = ({ children }) => {
@@ -10,35 +11,59 @@ const Sidebar = ({ children }) => {
         <div className='flex'>
             <div className='fixed w-20 h-screen p-4 bg-white border-r-[1px] flex flex-col justify-between'>
                 <div className='flex flex-col items-center'>
-                    <Link href='https://genie-bay.vercel.app/auth/Admin'>
-                        <div className='cursor-pointer bg-purple-400 p-3 rounded-lg inline-block'>
-                            <SiNextdotjs className='text-amber-400' size={30} />
+                    <Link href='/'>
+                        <div className='cursor-pointer p-3 rounded-lg inline-block'>
+                            <Image
+                                src='/img/CheetahWS.png'
+                                width={30}
+                                height={60}
+                                alt='CWS Logo'
+                            />
+                            {/*<SiNextdotjs className='text-amber-400' size={30} />*/}
                         </div>
                     </Link>
 
                     <span className='border-b-[1px] border-gray-300 w-full m-2'></span>
 
-                    <Link href='/'>
+                    <Link href='/Services'>
                         <div className='cursor-pointer bg-gray-400 hover:bg-gray-200 p-3 my-2 rounded-lg inline-block'>
-                            <RxDashboard className='text-amber-400 hover:text-amber-700' size={20} />
+                            <FcServices className='text-amber-400 hover:text-amber-700' size={25} />
                         </div>
                     </Link>
 
-                    <Link href='/Users'>
+                    <Link href='/Technology'>
                         <div className='cursor-pointer bg-gray-400 hover:bg-gray-200 p-3 my-2 rounded-lg inline-block'>
-                            <RxPerson className='text-amber-400 hover:text-amber-700' size={20} />
+                            <GiTechnoHeart className='text-amber-400 hover:text-amber-700' size={25} />
                         </div>
                     </Link>
 
-                    <Link href='/Manage'>
+                    <Link href='/ThankYou'>
                         <div className='cursor-pointer bg-gray-400 hover:bg-gray-200 p-3 my-2 rounded-lg inline-block'>
-                            <MdAdminPanelSettings className='text-amber-400 hover:text-amber-700' size={20} />
+                            <MdHistoryEdu className='text-amber-400 hover:text-amber-700' size={25} />
                         </div>
                     </Link>
 
-                    <Link href='/'>
+                    <Link href='/Work'>
                         <div className='cursor-pointer bg-gray-400 hover:bg-gray-200 p-3 my-2 rounded-lg inline-block'>
-                            <MdOutlineSettings className='text-amber-400 hover:text-amber-700' size={20} />
+                            <MdWorkHistory className='text-amber-400 hover:text-amber-700' size={25} />
+                        </div>
+                    </Link>
+
+                    <Link href='/WhoWeAre'>
+                        <div className='cursor-pointer bg-gray-400 hover:bg-gray-200 p-3 my-2 rounded-lg inline-block'>
+                            <MdPeopleAlt className='text-amber-400 hover:text-amber-700' size={25} />
+                        </div>
+                    </Link>
+
+                    <Link href='/Contact'>
+                        <div className='cursor-pointer bg-gray-400 hover:bg-gray-200 p-3 my-2 rounded-lg inline-block'>
+                            <MdContactPage className='text-amber-400 hover:text-amber-700' size={25} />
+                        </div>
+                    </Link>
+
+                    <Link href='/Settings'>
+                        <div className='cursor-pointer bg-gray-400 hover:bg-gray-200 p-3 my-2 rounded-lg inline-block'>
+                            <MdOutlineSettings className='text-amber-400 hover:text-amber-700' size={25} />
                         </div>
                     </Link>
                 </div>

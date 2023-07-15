@@ -1,80 +1,63 @@
 /** Controller */
-import Quiz from "@/model/quiz"
+import Onboarding from "@/model/getStarted"
 
 //get:http://localhost:3000/api/admin
-export async function getQuizzes(req, res) {
+export async function getAllClients(req, res) {
     try {
-        const quizzes = await Quiz.find({})
+        const newClient = await Onboarding.find({})
 
-        if (!quizzes) return res.status(404).json({ error: "Data Not Found!" })
-        res.status(200).json(quizzes)
+        if (!newClient) return res.status(404).json({ error: "Data Not Found!" })
+        res.status(200).json(newClient)
 
     } catch (error) {
-        return res.status(404).json({ error: "Error | While Fetching Quiz Data" })
+        return res.status(404).json({ error: "Error | While Fetching New Client Data" })
     }
 }
 
-//get:http://localhost:3000/api/admin?quizId=[_id]
-export async function getQuiz(req, res) {
+//get:http://localhost:3000/api/admin?clientId=[_id]
+export async function getClient(req, res) {
     try {
-        const {quizId} = req.query
+        const {clientId} = req.query
 
-        if(quizId) {
-            const quiz = await Quiz.findById(quizId)
-            res.status(200).json(quiz)
+        if(clientId) {
+            const client = await Onboarding.findById(clientId)
+            res.status(200).json(client)
         } else {
-            return res.status(404).json({ error: "Quiz Not Found || ID Not Found" })
+            return res.status(404).json({ error: "Client Not Found || ID Not Found" })
         }
     } catch (error) {
-        return res.status(404).json({ error: "Error | While Fetching Quiz With ID" })
+        return res.status(500).json({ error: `Error | While Fetching Client With ID {$clientId}` })
     }
 }
 
 //post: http://localhost:3000/api/admin
-export async function postQuizzes(req, res) {
+export async function postClient(req, res) {
     try {
-        const quizData = req.body;
+        const clientData = req.body;
 
-        if (!quizData) return res.status(404).json({ error: "No Quiz Data Provided!" })
+        if (!clientData) return res.status(404).json({ error: "No Client Data Provided!" })
 
-        const createQuiz = await Quiz.create(quizData)
-        return res.status(200).json(createQuiz)
+        const createClient = await Onboarding.create(clientData)
+        return res.status(200).json(createClient)
 
     } catch (error) {
-        return res.status(404).json({ error: "Error | While Posting Quiz Data" })
+        return res.status(404).json({ error: "Error | While Posting Client Data" })
     }
 }
 
-//put: http://localhost:3000/api/admin?quizId=[_id]
-export async function putQuiz(req, res) {
+//delete: http://localhost:3000/api/admin?clientId=[_id]
+export async function deleteClient(req, res) {
     try {
-        const { quizId } = req.query;
-        const quizData = req.body;
+        const {clientId} = req.query
 
-        if (quizId && quizData) {
-            await Quiz.findByIdAndUpdate(quizId, quizData);
-            return res.status(200).json(quizData); // return success response here
+        if(clientId) {
+            const deleteClient = await Onboarding.findByIdAndDelete(clientId)
+            return res.status(200).json({message: `Deleted Client with ID ${clientId}`})
         } else {
-            return res.status(404).json({ error: "Quiz Not Selected || ID Not Found!" }); // send error response here
-        }
-    } catch (error) {
-        return res.status(404).json({ error: "Error | While Updating Quiz Data" });
-    }
-}
-
-//delete: http://localhost:3000/api/admin?quizId=[_id]
-export async function deleteQuiz(req, res) {
-    try {
-        const {quizId} = req.query
-
-        if(quizId) {
-            const deleteQuiz = await Quiz.findByIdAndDelete(quizId)
-            return res.status(200).json({message: `Deleted Quiz with ID = ${quizId}`})
-        } else {
-            return res.status(404).json({ error: "Quiz Not Deleted || ID Not Found!" });
+            return res.status(404).json({ error: "Client Not Deleted || ID Not Found!" });
         }
 
     } catch (error) {
-        return res.status(404).json({ error: "Error | While Deleting Quiz Data" })
+        return res.status(500).json({ error: `Error | While Deleting Client with ID ${clientId}` })
     }
 }

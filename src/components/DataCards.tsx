@@ -6,7 +6,7 @@ const DataCards = () => {
             <div className='lg:col-span-2 col-span-1 bg-gray-200 flex justify-between w-full border p-4 rounded-lg'>
                 <div className='flex flex-col w-full pb-4'>
                     <div className='text-xl font-bold'>3000</div>
-                    <div className='text-gray-600'>Total number of Quizzes</div>
+                    <div className='text-gray-600'>Services Available</div>
                 </div>
                 <div className='bg-green-200 flex justify-center items-center p-2 rounded-lg'>
                     <span className='text-green-700 text-lg'>+18%</span>
@@ -15,7 +15,7 @@ const DataCards = () => {
             <div className='lg:col-span-2 col-span-1 bg-gray-200 flex justify-between w-full border p-4 rounded-lg'>
                 <div className='flex flex-col w-full pb-4'>
                     <div className='text-xl font-bold'>15</div>
-                    <div className='text-gray-600'>Total Categories</div>
+                    <div className='text-gray-600'>Technologies Used</div>
                 </div>
                 <div className='bg-green-200 flex justify-center items-center p-2 rounded-lg'>
                     <span className='text-green-700 text-lg'>+5%</span>
@@ -24,7 +24,7 @@ const DataCards = () => {
             <div className='bg-gray-200 flex justify-between w-full border p-4 rounded-lg'>
                 <div className='flex flex-col w-full pb-4'>
                     <div className='text-xl font-bold'>30</div>
-                    <div className='text-gray-600'>Users</div>
+                    <div className='text-gray-600'>Clients</div>
                 </div>
                 <div className='bg-green-200 flex justify-center items-center p-2 rounded-lg'>
                     <span className='text-green-700 text-lg'>+100%</span>
