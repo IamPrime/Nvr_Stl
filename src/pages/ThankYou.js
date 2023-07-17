@@ -1,7 +1,12 @@
-export default function Testimonial () {
-    <div>
+import React from "react";
+
+export default function Testimonial() {
+    return
+    (
         <div>
-            Thank You For Signing Up
+            <div>
+                Thank You For Signing Up
+            </div>
         </div>
-    </div>
+    )
 }

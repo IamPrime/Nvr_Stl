@@ -11,7 +11,8 @@ function AddClientForm({ clientData, setClientData }) {
     const addMutation = useMutation(postClient, {
         onSuccess: () => {
             queryClient.prefetchQuery('newClient', getAllClients);
-        }
+            window.location.href = '/ThankYou';
+        },
     });
 
     const handleSubmit = (e) => {
@@ -33,11 +34,20 @@ function AddClientForm({ clientData, setClientData }) {
     }
 
     if (addMutation.isSuccess) {
-        return <Success message={"Client Data Added Successfully"} />;
+        return <Success message={'Client Data Added Successfully'} />;
+
     }
 
     return (
         <div className='p-4'>
+        
+            <div className='flex items-center justify-center'>
+                <h3>All The Fields Are Required</h3>
+            </div>
+            <div className='flex items-center justify-center mb-4 font-bold'>
+                <h1 className='text-lg'>No Spam Ever | We Promise</h1>
+            </div>
+
             <div className='w-full m-auto p-4'>
                 <form onSubmit={handleSubmit}>
                     <div>
@@ -46,7 +56,7 @@ function AddClientForm({ clientData, setClientData }) {
                                 type='text'
                                 name='fullName'
                                 placeholder='Enter FullName'
-                                onChange={setClientData}
+                                onChange={(e) => setClientData({ ...clientData, fullName: e.target.value })}
                                 required
                                 className='w-full border px-5 py-3 focus:outline-none rounded-md'
                             />
@@ -54,20 +64,44 @@ function AddClientForm({ clientData, setClientData }) {
                                 type='tel'
                                 name='phoneNum'
                                 placeholder='Enter Mobile/Home number'
-                                onChange={setClientData}
+                                onChange={(e) => setClientData({ ...clientData, phoneNum: e.target.value })}
                                 required
                                 className='w-full border px-5 py-3 focus:outline-none rounded-md'
                             />
                         </div>
-                        <div className='flex items-center justify-center p-4 mb-2'>
+                        <div className='grid lg:grid-cols-2 items-center justify-center p-4 gap-2'>
                             <input
                                 type='email'
                                 name='email'
                                 placeholder='Enter Email'
-                                onChange={setClientData}
+                                onChange={(e) => setClientData({ ...clientData, email: e.target.value })}
                                 required
                                 className='w-full border px-5 py-3 focus:outline-none rounded-md'
                             />
+                            <div className='w-full flex items-center border px-3 py-3 gap-5 focus:outline-none rounded-md'>
+                                {/** Budget */}
+                                <select
+                                    name='budget'
+                                    id='budget'
+                                    onChange={(e) => setClientData({ ...clientData, budget: e.target.value })}
+                                >
+                                    <option value="Less - $50,000">&lt; $50,000</option>
+                                    <option value="$50,000 - $100,000">$50,000+</option>
+                                    <option value="$100,000 - $150,000">$100,000+</option>
+                                    <option value="$150,000 - Above">$150,000+</option>
+                                </select>
+                                {/** Service */}
+                                <select
+                                    name='service'
+                                    id='service'
+                                    onChange={(e) => setClientData({ ...clientData, service: e.target.value })}
+                                >
+                                    <option value='ios'>iOS App</option>
+                                    <option value='android'>Android App</option>
+                                    <option value='web'>Web App</option>
+                                    <option value='custom'>Custom App</option>
+                                </select>
+                            </div>
                         </div>
                         {/** Submit Button */}
                         <div className='flex items-center justify-center'>
